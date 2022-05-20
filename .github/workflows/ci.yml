@@ -28,7 +28,7 @@ jobs:
         id: vars
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
       - name: Publish to pypi
-        run: poetry version $RELEASE_VERSION && make publish-pypi
+        run: make publish-pypi
         shell: bash
         env:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
