@@ -1,0 +1,45 @@
+name: commander-build
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up the environment
+        uses: ./.github/workflows/setup-poetry-env
+      - name: Lint and test
+        uses: ./.github/workflows/lint-and-test
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up the environment
+        uses: ./.github/workflows/setup-poetry-env
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: Publish to pypi
+        run: poetry version $RELEASE_VERSION && make publish-pypi
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+
+  documentation:
+    runs-on: ubuntu-latest
+    needs: publish
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up the environment
+        uses: ./.github/workflows/setup-poetry-env
+      - name: Publish site to the GitHub pages
+        run: make gh-deploy

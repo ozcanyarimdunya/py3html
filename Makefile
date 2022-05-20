@@ -17,7 +17,6 @@ build-docs:
 	@poetry run mkdocs build
 
 install:
-	@pip install poetry
 	@poetry install
 	@poetry run pre-commit install
 
@@ -37,3 +36,6 @@ publish-pypi:
 
 test:
 	@poetry run pytest --cov
+
+dd:
+	@echo  $(PYPI_TOKEN)
