@@ -43,7 +43,7 @@ After installing now import `py3html`.
 ### Create new element
 
 ```python
-{!./tests/test_py3html.py[ln:72-78]!}
+{!./tests/test_py3html.py[ln:73-79]!}
 ```
 
 ### Create new element and update its html process methods
@@ -53,7 +53,7 @@ After installing now import `py3html`.
 Runs at first
 
 ```python
-{!./tests/test_py3html.py[ln:81-89]!}
+{!./tests/test_py3html.py[ln:82-90]!}
 ```
 
 #### On process
@@ -61,7 +61,7 @@ Runs at first
 Runs when its element processed
 
 ```python
-{!./tests/test_py3html.py[ln:92-100]!}
+{!./tests/test_py3html.py[ln:93-101]!}
 ```
 
 #### Post process
@@ -69,7 +69,7 @@ Runs when its element processed
 Runs when last tag appended
 
 ```python
-{!./tests/test_py3html.py[ln:103-111]!}
+{!./tests/test_py3html.py[ln:104-112]!}
 ```
 
 ### Sample new element usage
@@ -77,5 +77,5 @@ Runs when last tag appended
 This is a new element sample
 
 ```python
-{!./tests/test_py3html.py[ln:114-129]!}
+{!./tests/test_py3html.py[ln:115-130]!}
 ```
