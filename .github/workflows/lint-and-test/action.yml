@@ -5,5 +5,7 @@ runs:
   steps:
     - name: Run linter
       run: make lint
+      shell: bash
     - name: Test with pytest
       run: make test
+      shell: bash
