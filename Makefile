@@ -36,6 +36,3 @@ publish-pypi:
 
 test:
 	@poetry run pytest --cov
-
-dd:
-	@echo  $(PYPI_TOKEN)

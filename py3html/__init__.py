@@ -38,7 +38,7 @@ class Element:
         html = self.pre_process() or ""
         html += self.on_process() or ""
         html += self.post_process() or ""
-        return html
+        return html + "\n"
 
     def __str__(self):
         return self.html()

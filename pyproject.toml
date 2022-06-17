@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "py3html"
-version = "0.1.3"
+version = "0.1.4"
 description = "A very simple tool to generate html with python code."
 authors = ["Ozcan Yarimdunya <ozcanyd@gmail.com>"]
 license = "MIT"
