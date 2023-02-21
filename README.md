@@ -47,7 +47,7 @@ code = ph.Div(
     ph.P(
         "Login ",
         ph.Small("to"),
-        " continue !",
+        " continue!",
     ),
     attrs={"class": "container"}
 )
@@ -62,7 +62,7 @@ code.html()
 <div class="container">
   <h1 style="color: red">Welcome</h1>
   <a href="example.com">Click here!</a>
-  <p>Login <small>to</small> continue !</p>
+  <p>Login <small>to</small> continue!</p>
 </div>
 ```
 
