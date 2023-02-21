@@ -101,15 +101,6 @@ def test_new_element():
 
 def test_new_element_with_attributes():
     test = ph.element(tag="test", class_="test", style="background: red;")
-    assert (
-        test("Element 1!").html
-        == '<test class="test" style="background: red;">Element 1!</test>\n'
-    )
-    assert (
-        test("Element 2!", class_="changed").html
-        == '<test class="changed" style="background: red;">Element 2!</test>\n'
-    )
-    assert (
-        test("Element 3!", class_=None).html
-        == '<test class style="background: red;">Element 3!</test>\n'
-    )
+    assert test("Element 1!").html == '<test class="test" style="background: red;">Element 1!</test>\n'
+    assert test("Element 2!", class_="new").html == '<test class="new" style="background: red;">Element 2!</test>\n'
+    assert test("Element 3!", class_=None).html == '<test class style="background: red;">Element 3!</test>\n'
