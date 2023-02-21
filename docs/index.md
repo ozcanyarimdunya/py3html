@@ -25,9 +25,9 @@ Basic usage
 ```python
 import py3html as ph
 
-code = ph.P("Hello, World")
+code = ph.p("Hello, World")
 
-code.html()
+code.html
 ```
 
 **Output**
@@ -41,24 +41,23 @@ You can add more elements with attributes.
 ```python
 import py3html as ph
 
-code = ph.Div(
-    ph.H1("Welcome", attrs={"style": "color: red"}),
-    ph.A("Click here!", attrs={"href": "example.com"}),
-    ph.P(
+code = ph.div(
+    ph.h1("Welcome", style="color: red"),
+    ph.a("Click here!", href="example.com"),
+    ph.p(
         "Login ",
-        ph.Small("to"),
+        ph.small("to"),
         " continue!",
     ),
-    attrs={"class": "container"}
+    class_="container"
 )
 
-code.html()
+code.html
 ```
 
 **Output**
 
 ```html
-
 <div class="container">
   <h1 style="color: red">Welcome</h1>
   <a href="example.com">Click here!</a>
@@ -93,7 +92,7 @@ build-docs
 ```text
 MIT License
 
-Copyright (c) 2022 yarimdunya.com
+Copyright (c) 202 yarimdunya.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

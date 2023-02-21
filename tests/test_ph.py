@@ -1,18 +1,8 @@
-# Usage
+import textwrap
 
-`py3html` has very simple usage simple as html.
-
-### Getting Starting
-
-After installing now import `py3html`.
-
-```python
 import py3html as ph
-```
 
-### Basic usage
 
-```python
 def test_basic():
     code = ph.p("Test")
     assert code.html == "<p>Test</p>\n"
@@ -26,11 +16,8 @@ def test_self_closing():
 def test_str():
     code = ph.p("test")
     assert str(code) == "<p>test</p>\n"
-```
 
-### More complex usage
 
-```python
 def test_complex():
     code = ph.p(
         "This is a ",
@@ -41,22 +28,17 @@ def test_complex():
     <p>This is a <a href="test.com">test</a>
      code.</p>
      ''')
-```
 
-### Html escape usage
 
-```python
+def test_html_escape():
     code = ph.p(
         '<small>Escape "it"!</small>',
     )
     assert code.html == textwrap.dedent("""\
     <p>&lt;small&gt;Escape &quot;it&quot;!&lt;/small&gt;</p>
     """)
-```
 
-### Attributes usage
 
-```python
 def test_attributes():
     code = ph.div(
         ph.p("Test", style="color: red;"),
@@ -66,11 +48,8 @@ def test_attributes():
     <div class="test"><p style="color: red;">Test</p>
     </div>
     ''')
-```
 
-### Usage for `add` method, to create dynamic content
 
-```python
 def test_add():
     table = ph.table(
         ph.thead(
@@ -110,22 +89,16 @@ def test_add():
         </table>
     """)
     )
-```
 
-### Create new element
 
-```python
 def test_new_element():
     test = ph.element(tag="test")
     code = test("New element!", class_="test")
     assert code.html == textwrap.dedent('''\
     <test class="test">New element!</test>
     ''')
-```
 
-### Create new element with default attributes
 
-```python
 def test_new_element_with_attributes():
     test = ph.element(tag="test", class_="test", style="background: red;")
     assert (
@@ -140,4 +113,3 @@ def test_new_element_with_attributes():
         test("Element 3!", class_=None).html
         == '<test class style="background: red;">Element 3!</test>\n'
     )
-```
