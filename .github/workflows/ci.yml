@@ -1,43 +1,35 @@
-name: commander-build
+name: py3html-build
 
 on:
   push:
     branches: [ master ]
 
 jobs:
-
-  test:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set up the environment
-        uses: ./.github/workflows/setup-poetry-env
-      - name: Lint and test
-        uses: ./.github/workflows/lint-and-test
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-  publish:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set up the environment
-        uses: ./.github/workflows/setup-poetry-env
-      - name: Publish to pypi
-        run: make publish-pypi
-        shell: bash
-        env:
-          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.9"
 
-  documentation:
-    runs-on: ubuntu-latest
-    needs: publish
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Set up the environment
-        uses: ./.github/workflows/setup-poetry-env
-      - name: Publish site to the GitHub pages
-        run: make gh-deploy
-        shell: bash
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pypoetry/virtualenvs
+        key: ${{ hashFiles('poetry.lock') }}
+
+    - name: Install dependencies
+      run: pip install poetry && poetry install
+
+    - name: Publish site to the GitHub pages
+      run: poetry run mkdocs gh-deploy --clean --force
+
+    - name: Publish to pypi
+      run: make publish-pypi
+      shell: bash
+      env:
+        PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}

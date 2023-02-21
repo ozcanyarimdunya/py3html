@@ -2,17 +2,17 @@
 
 > A very simple tool to generate html with python code.
 
-| Project       | Tabler                                     |
-|---------------|--------------------------------------------|
-| Author        | Özcan Yarımdünya                           |
-| Documentation | https://ozcanyarimdunya.github.io/py3html  |
-| Source code   | https://github.com/ozcanyarimdunya/py3html |
+| Project       | Tabler                                                                                   |
+|---------------|------------------------------------------------------------------------------------------|
+| Author        | Özcan Yarımdünya                                                                         |
+| Documentation | [https://ozcanyarimdunya.github.io/py3html](https://ozcanyarimdunya.github.io/py3html)   |
+| Source code   | [https://github.com/ozcanyarimdunya/py3html](https://github.com/ozcanyarimdunya/py3html) |
 
 `py3html` is a library that you can generate html by using same tree-structure python code.
 
 ## Installation
 
-Only `python3.7+` required, no extra dependencies.
+Only `python3.9+` required, no extra dependencies.
 
 ```shell
 pip install py3html
@@ -68,7 +68,7 @@ code.html()
 
 ## Test
 
-This project using `pytest` and `pytest-cov`.
+This project using `pytest`.
 
 ```shell
 make test

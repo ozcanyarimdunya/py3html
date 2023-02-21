@@ -1,62 +1,17 @@
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
 [tool.poetry]
 name = "py3html"
 version = "0.1.4"
 description = "A very simple tool to generate html with python code."
 authors = ["Ozcan Yarimdunya <ozcanyd@gmail.com>"]
 license = "MIT"
-repository = "https://github.com/ozcanyarimdunya/py3html"
-homepage = "https://ozcanyarimdunya.github.io/py3html/"
-documentation = "https://ozcanyarimdunya.github.io/py3html/"
-readme = "README.md"
-keywords = ["py3html", "html"]
-classifiers = [
-    "Development Status :: 4 - Beta",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Topic :: Software Development :: Libraries",
-]
-include = ["LICENCE"]
-packages = [
-    { include = "py3html" },
-]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.9"
 
 [tool.poetry.dev-dependencies]
-mkdocs-material = "^8.2.15"
-pre-commit = "^2.19.0"
-mdx-include = "^1.4.1"
-pytest = "^7.1.2"
-pytest-cov = "^3.0.0"
+mkdocs = "^1.4.2"
+pytest = "^7.2.1"
 
-[tool.black]
-line_length = 120
-experimental_string_processing = true
-
-[tool.isort]
-profile = "black"
-ensure_newline_before_comments = true
-line_length = 120
-force_single_line = true
-force_alphabetical_sort_within_sections = true
-
-[tool.coverage.report]
-skip_covered = true
-show_missing = true
-exclude_lines = [
-    "pragma: no cover"
-]
-omit = [
-    "tests/*"
-]
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
