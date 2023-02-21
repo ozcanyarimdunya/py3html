@@ -1,9 +1,30 @@
 [tool.poetry]
 name = "py3html"
-version = "0.1.4"
+version = "0.1.5"
 description = "A very simple tool to generate html with python code."
-authors = ["Ozcan Yarimdunya <ozcanyd@gmail.com>"]
+authors = ["Özcan Yarımdünya <ozcanyd@gmail.com>"]
 license = "MIT"
+repository = "https://github.com/ozcanyarimdunya/py3html"
+homepage = "https://ozcanyarimdunya.github.io/py3html/"
+documentation = "https://ozcanyarimdunya.github.io/py3html/"
+readme = "README.md"
+keywords = ["py3html", "html"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Libraries",
+]
+include = ["LICENCE"]
+packages = [
+    { include = "py3html" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
