@@ -16,10 +16,8 @@ import py3html as ph
 code = ph.p("Test")
 assert code.html == "<p>Test</p>\n"
 
-
 code = ph.br()
 assert code.html == "<br />\n"
-
 
 code = ph.p("test")
 assert str(code) == "<p>test</p>\n"
@@ -29,9 +27,9 @@ assert str(code) == "<p>test</p>\n"
 
 ```python
 code = ph.p(
-"This is a ",
-ph.a("test", href="test.com"),
-" code.",
+    "This is a ",
+    ph.a("test", href="test.com"),
+    " code.",
 )
 assert code.html == textwrap.dedent('''\
 <p>This is a <a href="test.com">test</a>
@@ -43,10 +41,22 @@ code.</p>
 
 ```python
 code = ph.p(
-'<small>Escape "it"!</small>',
+    '<small>Escape "it"!</small>',
 )
 assert code.html == textwrap.dedent("""\
 <p>&lt;small&gt;Escape &quot;it&quot;!&lt;/small&gt;</p>
+""")
+```
+
+### Html unescape usage
+
+```python
+string = '<small>Escape "it"!</small>'
+code = ph.p(
+    ph.Html(string)
+)
+assert code.html == textwrap.dedent("""\
+<p><small>Escape "it"!</small></p>
 """)
 ```
 
@@ -63,27 +73,25 @@ assert code.html == textwrap.dedent('''\
 ''')
 ```
 
-### Usage for `add` method, to create dynamic content
+### Create dynamic content
 
 ```python
-table = ph.table(
-    ph.thead(
-        ph.tr(
-            ph.th("Id"),
-            ph.th("Name"),
-        )
-    ),
-    ph.tbody(
-        *[
-            ph.tr(
-                ph.td(i),
-                ph.td(f"Test {i}")
-            )
-            for i in range(3)
-        ]
+thead = ph.thead(
+    ph.tr(
+        ph.th("Id"),
+        ph.th("Name"),
     )
 )
-
+body = []
+for i in range(3):
+    body.append(
+        ph.tr(
+            ph.td(i),
+            ph.td(f"Test {i}")
+        )
+    )
+tbody = ph.tbody(*body)
+table = ph.table(thead, tbody)
 assert (
     table.html
     == textwrap.dedent("""\

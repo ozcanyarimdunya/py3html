@@ -2,32 +2,34 @@ from collections import namedtuple
 from html import escape
 
 
-class _Html(namedtuple("_Html", ["html"])):
+class Html(namedtuple("Html", ["html"])):
     __slots__ = ()
 
     def __str__(self):
         return self.html
 
 
-def element(tag, self_closing=False, **attributes):
-    def wrapper(*args, **kwargs):
+def element(tag, self_closing=False, **default_attributes):
+    def wrapper(*content_or_elements, **attributes):
         string = f"<{tag}"
-        for k, v in {**attributes, **kwargs}.items():
+        for k, v in {**default_attributes, **attributes}.items():
             if k == "class_":
                 k = "class"
             if v is None:
                 string += f" {k}"
+            elif isinstance(v, (int, float)):
+                string += f" {k}={v}"
             else:
                 string += f" {k}=\"{v}\""
 
         if not self_closing:
             string += ">"
 
-        for arg in args:
-            if isinstance(arg, _Html):
-                string += arg.html
+        for each in content_or_elements:
+            if isinstance(each, Html):
+                string += each.html
             else:
-                string += escape(str(arg))
+                string += escape(str(each))
 
         if self_closing:
             string += " />"
@@ -36,7 +38,7 @@ def element(tag, self_closing=False, **attributes):
 
         string += "\n"
 
-        return _Html(string)
+        return Html(string)
 
     return wrapper
 

@@ -39,6 +39,15 @@ def test_html_escape():
     """)
 
 
+def test_html_unescape():
+    string = '<small>Escape "it"!</small>'
+    code = ph.p(
+        ph.Html(string)
+    )
+    assert code.html == textwrap.dedent("""\
+    <p><small>Escape "it"!</small></p>
+    """)
+
 def test_attributes():
     code = ph.div(
         ph.p("Test", style="color: red;"),
@@ -51,24 +60,22 @@ def test_attributes():
 
 
 def test_add():
-    table = ph.table(
-        ph.thead(
-            ph.tr(
-                ph.th("Id"),
-                ph.th("Name"),
-            )
-        ),
-        ph.tbody(
-            *[
-                ph.tr(
-                    ph.td(i),
-                    ph.td(f"Test {i}")
-                )
-                for i in range(3)
-            ]
+    thead = ph.thead(
+        ph.tr(
+            ph.th("Id"),
+            ph.th("Name"),
         )
     )
-
+    body = []
+    for i in range(3):
+        body.append(
+            ph.tr(
+                ph.td(i),
+                ph.td(f"Test {i}")
+            )
+        )
+    tbody = ph.tbody(*body)
+    table = ph.table(thead, tbody)
     assert (
         table.html
         == textwrap.dedent("""\

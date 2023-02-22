@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "py3html"
-version = "1.0.1"
+version = "1.0.2"
 description = "A very simple tool to generate html with python code."
 authors = ["Özcan Yarımdünya <ozcanyd@gmail.com>"]
 license = "MIT"
