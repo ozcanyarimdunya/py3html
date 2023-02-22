@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="Python to HTML" /><meta name="author" content="Özcan Yarımdünya" /><link rel="canonical" href="https://ozcanyarimdunya.github.io/py3html/" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>py3html</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "py3html";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = "/py3html/";
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> py3html
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">py3html</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#test">Test</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#license">LICENSE</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="usage/">Usage</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">py3html</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>py3html</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/ozcanyarimdunya/py3html/edit/master/docs/index.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="py3html">py3html</h1>
+<blockquote>
+<p>A very simple tool to generate html with python code.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Tabler</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Author</td>
+<td>Özcan Yarımdünya</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td><a href="https://ozcanyarimdunya.github.io/py3html">https://ozcanyarimdunya.github.io/py3html</a></td>
+</tr>
+<tr>
+<td>Source code</td>
+<td><a href="https://github.com/ozcanyarimdunya/py3html">https://github.com/ozcanyarimdunya/py3html</a></td>
+</tr>
+</tbody>
+</table>
+<p><code>py3html</code> is a library that you can generate html by using same tree-structure python code.</p>
+<h2 id="installation">Installation</h2>
+<p>Only <code>python3.9+</code> required, no extra dependencies.</p>
+<pre><code class="language-shell">pip install py3html
+</code></pre>
+<h2 id="usage">Usage</h2>
+<p>Basic usage</p>
+<pre><code class="language-python">import py3html as ph
+
+code = ph.p(&quot;Hello, World&quot;)
+
+code.html
+</code></pre>
+<p><strong>Output</strong></p>
+<pre><code class="language-html">&lt;p&gt;Hello, World&lt;/p&gt;
+</code></pre>
+<p>You can add more elements with attributes.</p>
+<pre><code class="language-python">import py3html as ph
+
+code = ph.div(
+    ph.h1(&quot;Welcome&quot;, style=&quot;color: red&quot;),
+    ph.a(&quot;Click here!&quot;, href=&quot;example.com&quot;),
+    ph.p(
+        &quot;Login &quot;,
+        ph.small(&quot;to&quot;),
+        &quot; continue!&quot;,
+    ),
+    class_=&quot;container&quot;
+)
+
+code.html
+</code></pre>
+<p><strong>Output</strong></p>
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;h1 style=&quot;color: red&quot;&gt;Welcome&lt;/h1&gt;
+  &lt;a href=&quot;example.com&quot;&gt;Click here!&lt;/a&gt;
+  &lt;p&gt;Login &lt;small&gt;to&lt;/small&gt; continue!&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<h2 id="test">Test</h2>
+<p>This project using <code>pytest</code>.</p>
+<pre><code class="language-shell">make test
+</code></pre>
+<h2 id="documentation">Documentation</h2>
+<p><strong>Live preview</strong></p>
+<pre><code class="language-shell">make serve-docs
+</code></pre>
+<p><strong>Building</strong></p>
+<pre><code class="language-shell">build-docs
+</code></pre>
+<h2 id="license">LICENSE</h2>
+<pre><code class="language-text">MIT License
+
+Copyright (c) 2023 yarimdunya.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="usage/" class="btn btn-neutral float-right" title="Usage">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/ozcanyarimdunya/py3html" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+      <span><a href="usage/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.4.2
+Build Date UTC : 2023-02-22 08:46:51.337207+00:00
+-->

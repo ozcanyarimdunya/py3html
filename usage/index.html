@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Özcan Yarımdünya" /><link rel="canonical" href="https://ozcanyarimdunya.github.io/py3html/usage/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Usage - py3html</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Usage";
+        var mkdocs_page_input_path = "usage.md";
+        var mkdocs_page_url = "/py3html/usage/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> py3html
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">py3html</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Usage</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#getting-starting">Getting Starting</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#basic-usage">Basic usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#more-complex-usage">More complex usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#html-escape-usage">Html escape usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#html-unescape-usage">Html unescape usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#attributes-usage">Attributes usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create-dynamic-content">Create dynamic content</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create-new-element">Create new element</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create-new-element-with-default-attributes">Create new element with default attributes</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">py3html</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Usage</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/ozcanyarimdunya/py3html/edit/master/docs/usage.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="usage">Usage</h1>
+<p><code>py3html</code> has very simple usage simple as html.</p>
+<h3 id="getting-starting">Getting Starting</h3>
+<p>After installing now import <code>py3html</code>.</p>
+<pre><code class="language-python">import py3html as ph
+</code></pre>
+<h3 id="basic-usage">Basic usage</h3>
+<pre><code class="language-python">code = ph.p(&quot;Test&quot;)
+assert code.html == &quot;&lt;p&gt;Test&lt;/p&gt;\n&quot;
+
+code = ph.br()
+assert code.html == &quot;&lt;br /&gt;\n&quot;
+
+code = ph.p(&quot;test&quot;)
+assert str(code) == &quot;&lt;p&gt;test&lt;/p&gt;\n&quot;
+</code></pre>
+<h3 id="more-complex-usage">More complex usage</h3>
+<pre><code class="language-python">code = ph.p(
+    &quot;This is a &quot;,
+    ph.a(&quot;test&quot;, href=&quot;test.com&quot;),
+    &quot; code.&quot;,
+)
+assert code.html == textwrap.dedent('''\
+&lt;p&gt;This is a &lt;a href=&quot;test.com&quot;&gt;test&lt;/a&gt;
+code.&lt;/p&gt;
+''')
+</code></pre>
+<h3 id="html-escape-usage">Html escape usage</h3>
+<pre><code class="language-python">code = ph.p(
+    '&lt;small&gt;Escape &quot;it&quot;!&lt;/small&gt;',
+)
+assert code.html == textwrap.dedent(&quot;&quot;&quot;\
+&lt;p&gt;&amp;lt;small&amp;gt;Escape &amp;quot;it&amp;quot;!&amp;lt;/small&amp;gt;&lt;/p&gt;
+&quot;&quot;&quot;)
+</code></pre>
+<h3 id="html-unescape-usage">Html unescape usage</h3>
+<pre><code class="language-python">string = '&lt;small&gt;Escape &quot;it&quot;!&lt;/small&gt;'
+code = ph.p(
+    ph.Html(string)
+)
+assert code.html == textwrap.dedent(&quot;&quot;&quot;\
+&lt;p&gt;&lt;small&gt;Escape &quot;it&quot;!&lt;/small&gt;&lt;/p&gt;
+&quot;&quot;&quot;)
+</code></pre>
+<h3 id="attributes-usage">Attributes usage</h3>
+<pre><code class="language-python">code = ph.div(
+    ph.p(&quot;Test&quot;, style=&quot;color: red;&quot;),
+    class_=&quot;test&quot;,
+)
+assert code.html == textwrap.dedent('''\
+&lt;div class=&quot;test&quot;&gt;&lt;p style=&quot;color: red;&quot;&gt;Test&lt;/p&gt;
+&lt;/div&gt;
+''')
+</code></pre>
+<h3 id="create-dynamic-content">Create dynamic content</h3>
+<pre><code class="language-python">thead = ph.thead(
+    ph.tr(
+        ph.th(&quot;Id&quot;),
+        ph.th(&quot;Name&quot;),
+    )
+)
+body = []
+for i in range(3):
+    body.append(
+        ph.tr(
+            ph.td(i),
+            ph.td(f&quot;Test {i}&quot;)
+        )
+    )
+tbody = ph.tbody(*body)
+table = ph.table(thead, tbody)
+assert (
+    table.html
+    == textwrap.dedent(&quot;&quot;&quot;\
+    &lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Id&lt;/th&gt;
+    &lt;th&gt;Name&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;&lt;tr&gt;&lt;td&gt;0&lt;/td&gt;
+    &lt;td&gt;Test 0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;
+    &lt;td&gt;Test 1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;
+    &lt;td&gt;Test 2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;/table&gt;
+&quot;&quot;&quot;)
+)
+</code></pre>
+<h3 id="create-new-element">Create new element</h3>
+<pre><code class="language-python">test = ph.element(tag=&quot;test&quot;)
+code = test(&quot;New element!&quot;, class_=&quot;test&quot;)
+assert code.html == textwrap.dedent('''\
+&lt;test class=&quot;test&quot;&gt;New element!&lt;/test&gt;
+''')
+</code></pre>
+<h3 id="create-new-element-with-default-attributes">Create new element with default attributes</h3>
+<pre><code class="language-python">test = ph.element(tag=&quot;test&quot;, class_=&quot;test&quot;, style=&quot;background: red;&quot;)
+assert test(&quot;Element 1!&quot;).html == '&lt;test class=&quot;test&quot; style=&quot;background: red;&quot;&gt;Element 1!&lt;/test&gt;\n'
+assert test(&quot;Element 2!&quot;, class_=&quot;new&quot;).html == '&lt;test class=&quot;new&quot; style=&quot;background: red;&quot;&gt;Element 2!&lt;/test&gt;\n'
+assert test(&quot;Element 3!&quot;, class_=None).html == '&lt;test class style=&quot;background: red;&quot;&gt;Element 3!&lt;/test&gt;\n'
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="py3html"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/ozcanyarimdunya/py3html" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
